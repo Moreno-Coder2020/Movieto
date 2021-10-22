@@ -1,0 +1,947 @@
+/* -------------------------------------- START VARIABLES -------------------------------------- */
+:root {
+  /* colors */
+  --red: #e50914;
+  --dark-red: #b60914;
+  --black: rgb(12, 12, 12);
+  --white: #fff;
+  --grey: #d1d0cf;
+
+  /* adjustments */
+  --nav-height: 70px;
+  --neg-nav-height: -70px;
+  --border-radius: 5px;
+  --border-radius-none: 0px;
+  --margin-top: 40px;
+  --watchlist-movie-height: 450px;
+
+  /* Defaults */
+  --transition: .4s ease;
+}
+
+@media (max-width: 1200px) { /* MEDIA QUERIES FOR VARIABLES IN LARGE SCREEN */
+  :root {
+    --watchlist-movie-height: 450px;
+  }
+}
+
+@media (max-width: 992px) { /* MEDIA QUERIES FOR VARIABLES IN MEDIUM SCREEN */
+  :root {
+    --watchlist-movie-height: 300px;
+  }
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR VARIABLES IN SMALL SCREEN */
+  :root {
+    --watchlist-movie-height: 520px;
+  }
+}
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR VARIABLES IN VERY SMALL SCREEN */
+  :root {
+    --watchlist-movie-height: 550px;
+  }
+}
+
+@media (max-width: 375PX) { /* MEDIA QUERIES FOR VARIABLES IN VERY SMALL SCREEN */
+  :root {
+    --watchlist-movie-height: 520px;
+  }
+}
+
+@media (max-width: 320px) { /* MEDIA QUERIES FOR VARIABLES IN VERY SMALL SCREEN */
+  :root {
+    --watchlist-movie-height: 400px;
+  }
+}
+/* -------------------------------------- END VARIABLES -------------------------------------- */
+
+
+
+
+/* -------------------------------------- START RESET -------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans";
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--black);
+  color: #FFF;
+}
+
+ul li {
+  list-style: none;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR CONTAINER IN SMALL SCREEN */
+  .container {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+
+.section-title {
+  font-size: 30px;
+  text-transform: uppercase;
+  padding-left: 10px;
+  position: relative;
+}
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR SECTION TITLE IN VERY SMALL SCREEN */
+  .section-title {
+    font-size: 21px;
+  }
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-image: linear-gradient(to bottom, var(--red) 0, var(--red) 50%, var(--dark-red) 50%);
+  transition: var(--transition);
+}
+
+.section-title a {
+  color: #FFF;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.section-title a i {
+  font-size: 24px;
+  transition: var(--transition);
+  margin-left: 10px;
+}
+
+.section-title a:hover i {
+  margin-left: 20px;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 20, 20, .7);
+  padding: 60px 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(300px - 5px), 1fr));
+  gap: 5px;
+  margin-top: 40px;
+  padding-bottom: 60px;
+}
+
+@media (max-width: 768px) {/* MEDIA QUERIES FOR ROW IN SMALL SCREEN */
+  .row {
+    gap: 20px;
+  }
+}
+
+/* ------------------------------------ MOVIE ------------------------------------  */
+.row .movie {
+  position: relative;
+  transition: var(--transition);
+  z-index: 1;
+  border-radius: var(--border-radius);
+  max-height: 187px;
+  margin-bottom: var(--margin-top);
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR MOVIE IN SECTION IN SMALL SCREEN */
+  section:last-of-type .movie:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.row .movie:hover {
+  transform: scale(1.2);
+  z-index: 555;
+  border-bottom-left-radius: var(--border-radius-none);
+  border-bottom-right-radius: var(--border-radius-none);
+}
+
+@media (max-width: 1200px) { /* MEDIA QUERIES FOR MOVIE IN LARGE SCREEN */
+  .row .movie {
+    flex: 0 0 calc(33% - 5px);
+    margin-bottom: 15px;
+  }
+
+  .row .movie:not(:last-of-type) {
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR MOVIE IN SMALL SCREEN */
+  .row .movie {
+    margin-bottom: 75px;
+  }
+
+  .row .movie:hover {
+    transform: scale(1);
+    z-index: 555;
+    border-bottom-left-radius: var(--border-radius-none);
+    border-bottom-right-radius: var(--border-radius-none);
+  }
+}
+
+.row .movie:hover .content { opacity: 1; }
+
+.row .movie a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.row .movie .img {
+  max-height: 187px;
+  overflow: hidden;
+}
+
+.row .movie img {
+  width: 100%;
+  margin-bottom: -5px;
+  transition: var(--transition);
+  filter: brightness(70%);
+  border-radius: var(--border-radius);
+}
+
+.row .movie:hover img {
+  border-bottom-left-radius: var(--border-radius-none);
+  border-bottom-right-radius: var(--border-radius-none);
+  filter: brightness(90%);
+}
+
+.row .movie .content {
+  padding: 10px;
+  transition: var(--transition);
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  left: 0%;
+  background-color: rgb(31, 30, 30);
+  opacity: 0;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+@media (max-width: 768px) {
+  .row .movie .content {
+    opacity: 1;
+    z-index: -1;
+    transition: .3s;
+  }
+}
+
+.row .movie .content .details,
+.row .movie .content .categories {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.row .movie .content .details div { margin-right: 10px; }
+
+.row .movie .content .details .age,
+.row .movie .content .details .rate {
+  border: 1px solid var(--red);
+  font-size: 14px;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.row .movie .content .categories span {
+  position: relative;
+  padding-right: 15px;
+  margin-right: 10px;
+}
+
+.row .movie .content .categories span:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: var(--red);
+}
+
+/* -------------------------------------- END RESET -------------------------------------- */
+
+
+
+
+/* -------------------------------------- START NAV -------------------------------------- */
+nav {
+  background-color: rgba(20, 20, 20, 1);
+  color: var(--red);
+  height: var(--nav-height);
+  position: fixed;
+  text-transform: uppercase;
+  width: 100%;
+  z-index: 55555;
+  margin-top: var(--neg-nav-height);
+}
+
+nav .wrapper {
+  align-items: center;
+  display: flex;
+  height: var(--nav-height);
+  justify-content: space-between;
+}
+
+nav .brand a {
+  color: var(--red);
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: #DDD;
+  font-size: 20px;
+  padding: 20px;
+  text-decoration: none;
+
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--red);
+}
+
+@media (max-width: 992px) { /* MEDIA QUERIES FOR NAV LIST AND SARCH ICON IN MEDIUM SCREEN */
+  nav ul,
+  nav .search {
+    display: none;
+  }
+}
+
+nav .search i {
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 800;
+  color: #FFF;
+}
+/* -------------------------------------- END NAV -------------------------------------- */
+
+
+
+/* -------------------------------------- START HEADER -------------------------------------- */
+.header {
+  max-height: calc(100vh - var(--nav-height));
+  overflow: hidden;
+  position: relative;
+  margin-top: var(--nav-height);
+  margin-bottom: 40px;
+}
+
+@media (max-width: 425px) {
+  .header {
+    display: none;
+  }
+}
+
+.header video {
+  height: 100%;
+  width: 100%;
+  margin-top: -90px;
+}
+
+.header .content {
+  background-image: linear-gradient(to bottom, rgba(12, 12, 20, 0),rgba(12, 12, 12, 1));
+  height: calc(100% - 70px);
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  padding: 0 5%;
+  width: 100%;
+}
+
+.header .content h6 {
+  font-size: 60px;
+  margin-bottom: 40px;
+  position: relative;
+  padding: 0 10px;
+  overflow: hidden;
+}
+
+@media (max-width: 992px) { /* MEDIA QUERIES FOR THE H6 IN MEDIUM SCREEN */
+  .header .content h6 {
+    font-size: 40px;
+  }
+}
+
+.header .line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-image: linear-gradient(to bottom, var(--red) 50%, var(--dark-red) 50%, var(--dark-red) 100%);
+  z-index: 22;
+
+  animation-name: opacity;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.header .word {
+  position: relative;
+  left: -100%;
+
+  animation-name: move-to-right;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+
+.header .content .logo {
+  width: 50%;
+}
+
+.header .content .logo img {
+  width: 100%;
+  transform: translateY(200px);
+  opacity: 0;
+  animation-name: come-to-up;
+  animation-duration: 2s;
+  animation-delay: 4.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+/* -------------------------------------- END HEADER -------------------------------------- */
+
+
+
+/* -------------------------------------- START MOBILE HEADER -------------------------------------- */
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 425px) {
+  .mobile-header {
+    display: initial;
+  }
+}
+
+.mobile-header .container {
+  margin-top: 70px;
+  padding-top: 20px;
+  margin-bottom: var(--margin-top);
+}
+
+.mobile-header h6 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+@media (min-width: 376px) and (max-width: 425px) { /* MEDIA QUERIES FOR H6 IN MOBILE HEADER IN VERY SMALL SCREEN */
+  .mobile-header h6 {
+    font-size: 35px;
+  }
+}
+
+.mobile-header .img {
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-header img {
+  width: 70%;
+  border-radius: var(--border-radius);
+}
+
+.mobile-header .content {
+  margin-top: 15px;
+}
+
+.mobile-header .content .details,
+.mobile-header .content .categories {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+
+.mobile-header .content .details .age,
+.mobile-header .content .details .rate {
+  border: 1px solid var(--red);
+  font-size: 16px;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.mobile-header .content .categories span {
+  position: relative;
+}
+
+.mobile-header .content .categories span:not(:last-child) {
+  padding-right: 20px;
+}
+
+@media (min-width: 321px) and (max-width: 375px) {
+  .mobile-header .content .categories span:not(:last-child) {
+    padding-right: 30px;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 425px) {
+  .mobile-header .content .details,
+  .mobile-header .content .categories,
+  .mobile-header .content .details .age,
+  .mobile-header .content .details .rate {
+    font-size: 20px;
+  }
+
+  .mobile-header .content .categories span:not(:last-child) {
+    padding-right: 35px;
+  }
+}
+
+.mobile-header .content .categories span:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: var(--red);
+}
+/* -------------------------------------- START MOBILE HEADER -------------------------------------- */
+
+
+
+
+/* -------------------------------------- START CURRENTLY WATCHING -------------------------------------- */
+.currenty-watching {
+  background-image: url("../img/Series/Sherlock/background.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 60px 0;
+  position: relative;
+  padding: 0;
+}
+
+.currenty-watching .row {
+  all: initial;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-bottom: 60px;
+  color: #FFF;
+}
+
+.currenty-watching .row .movie-details,
+.currenty-watching .row .movie-trailer {
+  flex: 0 0 49%;
+  max-width: 49%;
+}
+
+@media (max-width: 992px) { /* MEDIA QUERIES FOR TRAILER AND DETAILS IN MEDIUM SCREEN */
+  .currenty-watching .row .movie-details,
+  .currenty-watching .row .movie-trailer {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .currenty-watching .row .movie-details {
+    margin-bottom: var(--margin-top);
+  }
+}
+
+.currenty-watching .movie-trailer video {
+  width: 100%;
+  border-right: 5px solid var(--red);
+  padding-right: 10px;
+}
+
+.currenty-watching .logo {
+  width: 100%;
+  margin-top: var(--margin-top);
+}
+
+.currenty-watching .logo img {
+  width: 50%;
+}
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR MOVIE LOGO IN VERY SMALL SCREEN */
+  .currenty-watching .logo img {
+    width: 100%;
+  }
+}
+
+.currenty-watching .content .details {
+  display: flex;
+  align-items: center;
+  margin-top: var(--margin-top);
+  font-size: 18px;
+}
+
+.currenty-watching .content .details div { margin-right: 10px; }
+
+.currenty-watching .content .details .age,
+.currenty-watching .content .details .rate {
+  border: 1px solid var(--red);
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.currenty-watching .content .categories {
+  margin-top: calc(var(--margin-top) - 20px);
+  font-size: 18px;
+}
+
+@media (max-width: 320px) { /* MEDIA QUERIES FOR DETAILS & CATEGORIES IN VERY SMALL SCREEN */
+  .currenty-watching .content .details,
+  .currenty-watching .content .categories{
+    font-size: 16px;
+  }
+}
+
+.currenty-watching .content .categories span {
+  position: relative;
+  padding-right: 15px;
+  margin-right: 10px;
+}
+
+.currenty-watching .content .categories span:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: var(--red);
+}
+
+.currenty-watching .progress {
+  margin-top: var(--margin-top);
+}
+
+.currenty-watching .progress h6 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 320px) { /* MEDIA QUERIES FOR SECTION TITLE IN VERY SMALL SCREEN */
+  .currenty-watching .progress h6 {
+    font-size: 18px;
+  }
+}
+
+.currenty-watching .progress-bar {
+  width: 100%;
+  height: 25px;
+  background-color: var(--dark-red);
+  position: relative;
+}
+
+@media (max-width: 320px) {
+  .currenty-watching .progress-bar { /* MEDIA QUERIES FOR PROGESS BAR IN VERY SMALL SCREEN */
+    height: 20px;
+  }
+}
+
+.currenty-watching .progress-bar span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background-color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+@media (max-width: 320px) { /* MEDIA QUERIES FOR PROGESS BAR NUMBER IN VERY SMALL SCREEN */
+  .currenty-watching .progress-bar span {
+    font-size: 14px;
+  }
+}
+.currenty-watching .story-line {
+  margin-top: var(--margin-top);
+  width: 100%;
+  border-left: 5px solid var(--red);
+  border-radius: var(--border-radius);
+
+  padding-left: 10px;
+}
+
+.currenty-watching .story-line p {
+  font-size: 20px;
+  line-height: 1.8em;
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR STORYLINE IN SMALL SCREEN */
+  .currenty-watching .story-line p {
+    font-size: 18px;
+    line-height: 1.8em;
+  }
+}
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR STORYLINE IN SMALL SCREEN */
+  .currenty-watching .story-line p {
+    font-size: 15px;
+  }
+
+  .currenty-watching .logo img {
+    width: 100%;
+  }
+}
+/* -------------------------------------- END CURRENTLY WATCHING -------------------------------------- */
+
+
+/* -------------------------------------- START WATCHLIST -------------------------------------- */
+.watchlist .row .movie {
+  min-height: var(--watchlist-movie-height);
+}
+
+.watchlist .row .movie .img {
+  max-height:  var(--watchlist-movie-height);
+  overflow: hidden;
+}
+
+.watchlist .row .movie img {
+  height: var(--watchlist-movie-height);
+  width: 100%;
+}
+
+/* -------------------------------------- END WATCHLIST -------------------------------------- */
+
+
+
+/* -------------------------------------- START MOVIE OF THE YEAR -------------------------------------- */
+.movie-year {
+  background-image: url("../img/Movies/The-Father/background.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 60px 0;
+  position: relative;
+  padding: 0;
+}
+
+.movie-year .row {
+  all: initial;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-bottom: 60px;
+  color: #FFF;
+}
+
+.movie-year .row .movie-details,
+.movie-year .row .movie-trailer {
+  flex: 0 0 49%;
+  max-width: 49%;
+}
+
+@media (max-width: 992px) { /* MEDIA QUERIES FOR TRAILER AND DETAILS IN MEDIUM SCREEN */
+  .movie-year .row .movie-details,
+  .movie-year .row .movie-trailer  {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .movie-year .row .movie-details {
+    margin-bottom: var(--margin-top);
+  }
+}
+
+.movie-year .movie-trailer video {
+  width: 100%;
+  border-right: 5px solid var(--red);
+  padding-right: 10px;
+}
+
+.movie-year .logo {
+  width: 100%;
+  margin-top: var(--margin-top);
+}
+
+.movie-year .logo img {
+  width: 50%;
+}
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR MOVIE LOGO IN VERY SMALL SCREEN */
+  .movie-year .logo img {
+    width: 100%;
+  }
+}
+
+.movie-year .content .details {
+  display: flex;
+  align-items: center;
+  margin-top: var(--margin-top);
+  font-size: 18px;
+}
+
+.movie-year .content .details div { margin-right: 10px; }
+
+.movie-year .content .details .age,
+.movie-year .content .details .rate {
+  border: 1px solid var(--red);
+  padding: 0 10px;
+  border-radius: 5px;
+
+}
+
+.movie-year .content .categories {
+  margin-top: calc(var(--margin-top) - 20px);
+  font-size: 18px;
+}
+
+.movie-year .content .categories span {
+  position: relative;
+  padding-right: 15px;
+  margin-right: 10px;
+}
+
+.movie-year .content .categories span:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: var(--red);
+}
+
+.movie-year .story-line {
+  margin-top: var(--margin-top);
+  width: 100%;
+  border-left: 5px solid var(--red);
+  border-radius: var(--border-radius);
+
+  padding-left: 10px;
+}
+
+.movie-year .story-line p {
+  font-size: 20px;
+  line-height: 1.8em;
+}
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR STORYLINE IN VERY SMALL SCREEN */
+  .movie-year .story-line p {
+    font-size: 15px;
+  }
+}
+/* -------------------------------------- END MOVIE OF THE YEAR -------------------------------------- */
+
+
+
+/* -------------------------------------- START FOOTER -------------------------------------- */
+footer {
+  background-color: rgb(31, 30, 30);
+  margin-top: 60px;
+  height: 80px;
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR FOOTER IN SMALL SCREEN */
+  footer {
+    text-align: center;
+    margin: 0;
+  }
+}
+
+footer .row {
+  all: initial;
+  height: 80px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-bottom: 0;
+  color: #FFF;
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR FOOTER ROW IN SMALL SCREEN */
+  footer .row {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) { /* MEDIA QUERIES FOR COPYRIGHT & LINKS IN SMALL SCREEN */
+  footer .row .copyright,
+  footer .row .links {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+footer .row .copyright h5 {
+  font-size: 20px;
+}
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR COPYRIGHT IN VERY SMALL SCREEN */
+  footer .row .copyright h5 {
+    font-size: 18px;
+  }
+}
+
+footer .row .copyright h5 span {
+  color: var(--red);
+}
+
+footer .links ul li {
+  display: inline;
+}
+
+footer .links ul li a {
+  color: #DDD;
+  font-size: 20px;
+  padding: 20px;
+  text-decoration: none;
+}
+
+
+@media (max-width: 425px) { /* MEDIA QUERIES FOR LINKS IN VERY SMALL SCREEN */
+  footer .links ul li a {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+}
+
+footer .links ul li a:hover,
+footer .links ul li a.active {
+  color: var(--red);
+}
+/* -------------------------------------- END FOOTER -------------------------------------- */

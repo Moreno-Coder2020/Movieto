@@ -1,0 +1,15 @@
+.row .movie {
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .row .movie:not(:last-of-type) {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .row .movie {
+    margin-bottom: 70px;
+  }
+}

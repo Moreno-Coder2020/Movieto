@@ -1,0 +1,27 @@
+.row .movie {
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .row .movie:not(:last-of-type) {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .row .movie {
+    margin-bottom: 70px;
+  }
+}
+
+video {
+  margin-top: -100px;
+}
+
+.header {
+  max-height: calc(100vh - 135px);
+}
+
+.header .content .logo {
+  width: 40%;
+}
